@@ -14,8 +14,7 @@
     onSelect: () => void
   }
 
-  let { challenge, category, solved, bloodTier, selected, onSelect }: Props =
-    $props()
+  let { challenge, solved, bloodTier, selected, onSelect }: Props = $props()
 
   const isDynamic = $derived(
     challenge.scoringKind === ChallengeScoringKind.DYNAMIC
@@ -33,22 +32,20 @@
   <button
     type="button"
     onclick={onSelect}
-    data-solved={solved && !bloodTier ? '' : undefined}
+    data-solved={solved || bloodTier ? '' : undefined}
     data-blood={bloodTier ?? undefined}
     data-selected={selected ? '' : undefined}
   >
-    {#if bloodTier}
-      <IconAwardFilled data-indicator />
-    {:else if solved}
-      <IconCheck data-indicator />
-    {/if}
-
     <item-main>
       <item-title>
-        <span data-part="category">{category} /</span>
         <span data-part="name">{challenge.name}</span>
+        {#if bloodTier}
+          <IconAwardFilled data-indicator aria-label="{bloodTier} blood" />
+        {:else if solved}
+          <IconCheck data-indicator aria-label="Solved" />
+        {/if}
       </item-title>
-      <span data-part="author">{challenge.author}</span>
+      <span data-part="author">by {challenge.author}</span>
     </item-main>
 
     {#if showsScore}
@@ -56,7 +53,6 @@
         <span data-part="points">
           {#if isDynamic && displayPoints === 0}
             <strong>Dynamic</strong>
-            <span data-part="unscored">(0 pts)</span>
           {:else}
             <strong>{displayPoints.toLocaleString()}</strong> pts
           {/if}
@@ -74,25 +70,22 @@
 <style>
   li {
     display: block;
+    border-block-end: 1px solid var(--border);
   }
 
   button {
     position: relative;
     display: flex;
     flex-direction: column;
-    gap: 0.25rem;
+    gap: 0.375rem;
     inline-size: 100%;
-    padding: 0.75rem 2.25rem;
+    padding: 0.9375rem var(--list-gutter);
     text-align: start;
     cursor: pointer;
-    --edge-soft: color-mix(
-      in srgb,
-      var(--edge-color, transparent) 20%,
-      transparent
-    );
+    transition: background-color 120ms ease;
 
     &:hover {
-      background: var(--category-background-l1-hover);
+      background: var(--background-l2);
     }
 
     &:focus-visible {
@@ -101,102 +94,67 @@
       z-index: 1;
     }
 
-    &[data-solved] {
-      --edge-color: var(--foreground-success);
-    }
-
-    &[data-blood='gold'] {
-      --edge-color: var(--foreground-gold-l0);
-      --edge-soft: var(--background-gold);
-    }
-
-    &[data-blood='silver'] {
-      --edge-color: var(--foreground-silver-l0);
-      --edge-soft: var(--background-silver);
-    }
-
-    &[data-blood='bronze'] {
-      --edge-color: var(--foreground-bronze-l0);
-      --edge-soft: var(--background-bronze);
-    }
-
-    &[data-solved]::before,
-    &[data-blood]::before {
-      content: '';
-      position: absolute;
-      inset-block: 0;
-      inset-inline-start: 0;
-      inline-size: 9rem;
-      pointer-events: none;
-      background: linear-gradient(to right, var(--edge-soft), transparent);
-    }
-
     &[data-selected] {
-      box-shadow: inset 0 0 0 2px
-        color-mix(in srgb, var(--category-foreground-l1) 25%, transparent);
-
-      &::after {
-        content: '';
-        position: absolute;
-        inset-block: 0;
-        inset-inline-end: 0;
-        inline-size: 24rem;
-        pointer-events: none;
-        background: linear-gradient(
-          to left,
-          var(--category-background-l0),
-          transparent
-        );
-      }
+      background: var(--background-l3);
     }
 
-    :global(svg[data-indicator]) {
-      position: absolute;
-      inset-block-start: 50%;
-      inset-inline-start: 0.5rem;
-      translate: 0 -50%;
-      font-size: 1.25rem;
-      color: var(--edge-color);
+    &[data-solved] [data-part='name'] {
+      color: var(--foreground-l2);
     }
   }
 
   item-main {
-    position: relative;
-    z-index: 1;
     display: flex;
     flex-direction: column;
+    gap: 0.125rem;
     min-inline-size: 0;
   }
 
   item-title {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    font-size: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-inline-size: 0;
+
+    :global(svg[data-indicator]) {
+      flex-shrink: 0;
+      font-size: 0.9375rem;
+      color: var(--foreground-success);
+    }
   }
 
-  [data-part='category'] {
-    display: none;
-    color: var(--category-foreground-l1);
+  [data-blood='gold'] :global(svg[data-indicator]) {
+    color: var(--foreground-gold-l0);
+  }
+
+  [data-blood='silver'] :global(svg[data-indicator]) {
+    color: var(--foreground-silver-l0);
+  }
+
+  [data-blood='bronze'] :global(svg[data-indicator]) {
+    color: var(--foreground-bronze-l0);
   }
 
   [data-part='name'] {
-    color: var(--category-foreground-l0);
+    overflow: hidden;
+    font-size: 1.0625rem;
+    font-weight: 500;
+    line-height: 1.35;
+    color: var(--foreground-l0);
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   [data-part='author'] {
     overflow: hidden;
+    font-size: 0.8125rem;
+    color: var(--foreground-l3);
     text-overflow: ellipsis;
     white-space: nowrap;
-    color: var(--category-foreground-l1);
-    opacity: 0.75;
   }
 
   item-score {
-    position: relative;
-    z-index: 1;
     display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
     gap: var(--space-2xs);
     align-items: baseline;
@@ -205,24 +163,18 @@
   }
 
   [data-part='points'] {
-    font-size: 1.25rem;
-    color: var(--category-foreground-l1);
+    font-size: 0.9375rem;
+    color: var(--foreground-l3);
 
     strong {
-      color: var(--category-foreground-l0);
-      font-weight: var(--font-weight-normal);
+      color: var(--foreground-l0);
+      font-weight: 400;
     }
   }
 
-  [data-part='unscored'] {
-    color: var(--category-foreground-l1);
-    font-size: var(--step-0);
-    opacity: 0.6;
-  }
-
   [data-part='solves'] {
-    color: var(--category-foreground-l1);
-    opacity: 0.75;
+    font-size: 0.8125rem;
+    color: var(--foreground-l3);
   }
 
   @container challenges-list (min-inline-size: 24rem) {
@@ -230,16 +182,13 @@
       flex-direction: row;
       align-items: center;
       justify-content: space-between;
-    }
-
-    [data-part='category'] {
-      display: inline;
+      gap: 1rem;
     }
 
     item-score {
       flex-direction: column;
       align-items: flex-end;
-      gap: 0;
+      gap: 0.125rem;
     }
   }
 </style>

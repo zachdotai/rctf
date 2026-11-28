@@ -50,7 +50,7 @@
     color: var(--foreground-l4);
     background: transparent;
     border: none;
-    border-inline-end: 2px solid var(--border);
+    border-inline-end: 1px solid var(--border);
     font-size: var(--step--1);
     cursor: pointer;
 

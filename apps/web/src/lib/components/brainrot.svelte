@@ -106,7 +106,7 @@
     flex-direction: column;
     overflow: hidden;
     background: var(--background-l1);
-    border: 2px solid var(--border);
+    border: 1px solid var(--border);
     border-radius: var(--radius-lg);
     box-shadow: 0 10px 30px var(--gray-a8);
   }

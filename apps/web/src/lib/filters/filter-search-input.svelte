@@ -30,7 +30,7 @@
     block-size: 2.75rem;
     padding-inline: 0.75rem;
     color: var(--foreground-l3);
-    border-block-end: 2px solid var(--border);
+    border-block-end: 1px solid var(--border);
 
     :global(svg) {
       flex-shrink: 0;
@@ -41,7 +41,7 @@
     &[data-variant='mobile'] {
       block-size: 2.5rem;
       background: var(--background-l2);
-      border: 2px solid var(--border);
+      border: 1px solid var(--border);
       border-radius: var(--radius-md);
     }
   }

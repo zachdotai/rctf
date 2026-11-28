@@ -9,7 +9,7 @@
     isSolved: boolean
   }
 
-  let { challenge }: Props = $props()
+  let { challenge, isSolved }: Props = $props()
 
   const config = $derived(getCategoryConfig(challenge.category))
   const tags = $derived(challenge.tags ?? [])
@@ -24,154 +24,121 @@
 
 <details-header>
   <header-main>
+    <header-eyebrow>
+      <span data-slot="category">{config.name}</span>
+      {#each tags as tag (tag)}
+        <Chip>{tag}</Chip>
+      {/each}
+      {#if isSolved}
+        <span data-slot="solved">Solved</span>
+      {/if}
+    </header-eyebrow>
     <h2>{challenge.name}</h2>
-    <header-meta>
-      <span data-slot="author">by {challenge.author}</span>
-      <meta-separator aria-hidden="true">·</meta-separator>
-      <chip-row>
-        <category-chip data-category-color={config.color}>
-          <config.icon data-slot="category-icon" />
-          {config.name}
-        </category-chip>
-        {#each tags as tag (tag)}
-          <Chip>{tag}</Chip>
-        {/each}
-      </chip-row>
-    </header-meta>
+    <span data-slot="author">by {challenge.author}</span>
   </header-main>
 
   {#if showsScore}
-    <header-score>
-      <span data-slot="points">{displayPoints.toLocaleString()} pts</span>
+    <header-stats>
+      <stat-item>
+        <stat-value>{displayPoints.toLocaleString()}</stat-value>
+        <stat-label>{isDynamic ? 'your score' : 'points'}</stat-label>
+      </stat-item>
       {#if isDynamic}
-        <ChallengePointDelta delta={challenge.yourPointDelta ?? 0} />
+        <stat-item>
+          <ChallengePointDelta delta={challenge.yourPointDelta ?? 0} />
+        </stat-item>
       {:else}
-        <span data-slot="solves"
-          >{challenge.solves.toLocaleString()} solves</span
-        >
+        <stat-item>
+          <stat-value>{challenge.solves.toLocaleString()}</stat-value>
+          <stat-label>{challenge.solves === 1 ? 'solve' : 'solves'}</stat-label>
+        </stat-item>
       {/if}
-    </header-score>
+    </header-stats>
   {/if}
 </details-header>
 
 <style>
   details-header {
     display: flex;
-    align-items: flex-start;
+    flex-wrap: wrap;
+    align-items: flex-end;
     justify-content: space-between;
-    gap: 1rem;
-    padding: 1rem 2.25rem;
-
-    @media (width >= 40rem) {
-      padding-block: 1.5rem;
-    }
+    gap: 1.25rem 2rem;
+    padding: 2rem var(--detail-gutter) 1.5rem;
   }
 
   header-main {
     display: flex;
-    flex: 1;
+    flex: 1 1 18rem;
     flex-direction: column;
-    gap: 0.25rem;
+    gap: 0.5rem;
     min-inline-size: 0;
+  }
+
+  header-eyebrow {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.375rem 0.625rem;
+
+    :global(ui-chip) {
+      font-size: 0.6875rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+  }
+
+  [data-slot='category'],
+  [data-slot='solved'] {
+    font-size: var(--eyebrow-size);
+    font-weight: var(--eyebrow-weight);
+    letter-spacing: var(--eyebrow-tracking);
+    text-transform: uppercase;
+    color: var(--foreground-l3);
+  }
+
+  [data-slot='solved'] {
+    color: var(--foreground-success);
   }
 
   h2 {
     margin: 0;
-    overflow: hidden;
-    font-size: 1.25rem;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-
-    @media (width >= 40rem) {
-      font-size: 1.5rem;
-    }
-  }
-
-  header-meta {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 0.25rem 0.5rem;
-    color: var(--foreground-l3);
-    font-size: 0.875rem;
-
-    @media (width >= 40rem) {
-      font-size: 1rem;
-    }
-  }
-
-  meta-separator {
-    display: none;
-    font-size: 1.5rem;
-    line-height: 1;
-    color: var(--foreground-l5);
-    opacity: 0.5;
-
-    @media (width >= 40rem) {
-      display: inline;
-    }
+    font-size: clamp(1.75rem, 1.4rem + 1.4cqi, 2.5rem);
+    line-height: 1.1;
+    overflow-wrap: anywhere;
   }
 
   [data-slot='author'] {
-    flex-shrink: 0;
+    font-size: 0.875rem;
+    color: var(--foreground-l3);
   }
 
-  chip-row {
+  header-stats {
     display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-3xs);
-  }
-
-  category-chip {
-    display: inline-flex;
     flex-shrink: 0;
-    align-items: center;
-    gap: 0.25rem;
-    padding: 0.125rem 0.5rem;
-    font-size: 0.75rem;
-    color: var(--category-foreground-l1);
-    white-space: nowrap;
-    background: var(--category-background-l0);
-    border-radius: var(--radius-lg);
-
-    @media (width >= 40rem) {
-      padding-inline: 0.75rem;
-      font-size: 0.875rem;
-    }
-
-    :global([data-slot='category-icon']) {
-      flex-shrink: 0;
-      font-size: 0.75rem;
-
-      @media (width >= 40rem) {
-        font-size: 0.875rem;
-      }
-    }
+    gap: 2rem;
   }
 
-  header-score {
+  stat-item {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    flex-shrink: 0;
-    white-space: nowrap;
-    font-variant-numeric: tabular-nums;
+    gap: 0.125rem;
   }
 
-  [data-slot='points'] {
-    font-size: 1.25rem;
-
-    @media (width >= 40rem) {
-      font-size: 1.5rem;
-    }
+  stat-value {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    line-height: 1;
+    font-variant-numeric: lining-nums tabular-nums;
+    color: var(--foreground-l0);
   }
 
-  [data-slot='solves'] {
+  stat-label {
+    font-size: var(--eyebrow-size);
+    font-weight: var(--eyebrow-weight);
+    letter-spacing: var(--eyebrow-tracking);
+    text-transform: uppercase;
     color: var(--foreground-l3);
-    font-size: 0.875rem;
-
-    @media (width >= 40rem) {
-      font-size: 1rem;
-    }
   }
 </style>

@@ -121,7 +121,6 @@
       position: absolute;
       inset: 0;
       z-index: -1;
-      border-radius: var(--radius-lg);
     }
 
     &::before {
@@ -129,8 +128,7 @@
     }
 
     &::after {
-      inline-size: min(24rem, 100%);
-      background: linear-gradient(to right, var(--rank-glow), transparent);
+      display: none;
     }
 
     &[data-rank='first'] {
@@ -172,8 +170,6 @@
       inline-size: var(--score-content-width);
       block-size: var(--score-row-height);
       background: var(--background-self-l0);
-      border-start-end-radius: var(--radius-lg);
-      border-end-end-radius: var(--radius-lg);
     }
   }
 </style>

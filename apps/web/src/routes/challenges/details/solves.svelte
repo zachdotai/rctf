@@ -262,7 +262,7 @@
     z-index: 2;
     padding-inline: 1.25rem;
     pointer-events: none;
-    background: var(--background-l2);
+    background: var(--background-l0);
 
     &[data-edge='top'] {
       inset-block-start: 0;

@@ -241,10 +241,6 @@
     display: flex;
     gap: 4px;
     flex-shrink: 0;
-
-    &:nth-of-type(odd) {
-      background: color-mix(in oklab, var(--foreground-l0) 4%, transparent);
-    }
   }
 
   solve-cell {
@@ -259,10 +255,6 @@
       content: '';
       position: absolute;
       inset: 0 -4px -4px 0;
-    }
-
-    &[data-stripe]:nth-of-type(odd) {
-      background: color-mix(in oklab, var(--foreground-l0) 4%, transparent);
     }
 
     &[data-tooltip-cell][data-col-hover] {
@@ -283,18 +275,18 @@
   }
 
   cell-circle {
-    inline-size: 1.25rem;
-    block-size: 1.25rem;
+    inline-size: 0.625rem;
+    block-size: 0.625rem;
     border-radius: var(--radius-full);
     box-sizing: border-box;
 
     &[data-solved] {
-      border: 2px solid
-        color-mix(in oklab, var(--foreground-success) 75%, transparent);
+      background: var(--foreground-l0);
+      border: 1px solid var(--foreground-l0);
     }
 
     &[data-unsolved] {
-      border: 2px dashed var(--foreground-l5);
+      border: 1px solid var(--foreground-l5);
     }
   }
 

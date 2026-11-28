@@ -97,14 +97,14 @@
     container-type: inline-size;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-    padding: 1rem 1.25rem;
+    gap: 2.25rem;
+    padding: 1.75rem var(--detail-gutter) 2rem;
   }
 
   overview-grid {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    gap: 1rem;
+    gap: 2.25rem;
 
     @container (min-inline-size: 36rem) {
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -124,8 +124,8 @@
   file-list {
     display: flex;
     flex-direction: column;
-    gap: 0.25rem;
-    max-block-size: 12rem;
+    max-block-size: 14rem;
+    border-block-start: 1px solid var(--border);
     overflow-y: auto;
     overscroll-behavior: none;
 
@@ -133,14 +133,14 @@
       display: flex;
       align-items: center;
       gap: 0.75rem;
-      padding: 0.5rem 0.75rem;
+      padding: 0.75rem 0.25rem;
       color: inherit;
       text-decoration: none;
-      background: var(--background-l4);
-      border-radius: var(--radius-md);
+      border-block-end: 1px solid var(--border);
+      transition: background-color 120ms ease;
 
       &:hover {
-        background: var(--background-l5);
+        background: var(--background-l2);
       }
 
       &:focus-visible {
@@ -151,8 +151,8 @@
 
     :global([data-slot='icon']) {
       flex-shrink: 0;
-      font-size: 1.25rem;
-      color: var(--foreground-l3);
+      font-size: 1.125rem;
+      color: var(--foreground-l4);
     }
   }
 
@@ -162,6 +162,8 @@
     min-inline-size: 0;
 
     [data-slot='name'] {
+      font-size: 0.9375rem;
+      font-weight: 400;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;

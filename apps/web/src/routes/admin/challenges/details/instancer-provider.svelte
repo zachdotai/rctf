@@ -171,7 +171,7 @@
     flex-direction: column;
     min-block-size: 0;
     overflow: clip;
-    border: 2px solid var(--border);
+    border: 1px solid var(--border);
     border-radius: var(--radius-lg);
   }
 

@@ -106,15 +106,22 @@
     align-items: center;
     gap: var(--space-3xs);
     inline-size: 100%;
-    min-block-size: 2.25rem;
-    padding: var(--space-3xs) var(--space-2xs);
-    background: var(--background-l4);
-    border: 2px solid transparent;
+    min-block-size: 2.5rem;
+    padding: var(--space-3xs) 0.75rem;
+    background: var(--background-input);
+    border: 1px solid var(--border-strong);
     border-radius: var(--radius-md);
+    transition: border-color 120ms ease;
+
+    &:hover {
+      border-color: var(--foreground-l4);
+    }
 
     &:focus-within {
-      outline: 2px solid var(--ring);
+      outline: 2px solid transparent;
       outline-offset: -1px;
+      border-color: var(--foreground-l0);
+      box-shadow: 0 0 0 1px var(--foreground-l0);
     }
 
     &[data-invalid],

@@ -341,7 +341,7 @@
     align-items: center;
     gap: var(--space-2xs);
     padding: var(--space-2xs);
-    border-block-end: 2px solid var(--border);
+    border-block-end: 1px solid var(--border);
   }
 
   search-field {
@@ -354,7 +354,7 @@
     padding-inline: 0.5rem;
     color: var(--foreground-l3);
     background: var(--background-l4);
-    border: 2px solid var(--border);
+    border: 1px solid var(--border);
     border-radius: var(--radius-md);
 
     :global(svg) {
@@ -394,7 +394,7 @@
 
   teams-head {
     block-size: 100%;
-    border-block-end: 2px solid var(--border);
+    border-block-end: 1px solid var(--border);
     background: var(--background-l2);
   }
 
@@ -648,7 +648,7 @@
     padding: var(--space-3xs) var(--space-2xs);
     color: var(--foreground-l1);
     background: var(--background-l2);
-    border: 2px solid var(--border);
+    border: 1px solid var(--border);
     border-radius: var(--radius-sm);
     font-size: var(--step--1);
     white-space: nowrap;

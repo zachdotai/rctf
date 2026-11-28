@@ -7,12 +7,7 @@
   } from '@rctf/types'
   import { showApiError } from '$lib/api'
   import { useApiForm } from '$lib/forms/use-api-form.svelte'
-  import {
-    IconCheck,
-    IconInfo,
-    IconPaperPlaneTilt,
-    IconSignIn,
-  } from '$lib/icons'
+  import { IconCheck, IconInfo } from '$lib/icons'
   import { useClientConfig } from '$lib/query/config'
   import { useCurrentUser } from '$lib/query/user'
   import { toast } from '$lib/toast'
@@ -94,10 +89,7 @@
       <span>The CTF has ended.</span>
     </submit-notice>
   {:else if submitState === 'login'}
-    <Button href="/login">
-      <IconSignIn />
-      Login to submit
-    </Button>
+    <Button href="/login">Log in to submit</Button>
   {:else}
     <form onsubmit={handleSubmit}>
       <submit-row>
@@ -128,7 +120,7 @@
           {#if form.submitting}
             <Spinner />
           {:else}
-            <IconPaperPlaneTilt />
+            Submit
           {/if}
         </button>
       </submit-row>
@@ -139,13 +131,12 @@
 <style>
   challenge-submit {
     display: block;
-    --submit-block-size: 3rem;
+    --submit-block-size: 2.75rem;
 
     :global(a[data-variant]) {
-      gap: 0.5rem;
       inline-size: 100%;
       block-size: var(--submit-block-size);
-      font-size: 1.25rem;
+      font-size: 1.0625rem;
     }
   }
 
@@ -156,7 +147,7 @@
   submit-row {
     display: flex;
     align-items: stretch;
-    gap: 0.5rem;
+    gap: 0.625rem;
     block-size: var(--submit-block-size);
 
     :global(input[data-flag-input]) {
@@ -164,8 +155,7 @@
       min-inline-size: 0;
       block-size: var(--submit-block-size);
       font-family: var(--font-mono);
-      font-size: 1.25rem;
-      border-radius: var(--radius-lg);
+      font-size: 0.9375rem;
 
       &:disabled {
         cursor: not-allowed;
@@ -178,18 +168,14 @@
     display: flex;
     flex: 1;
     align-items: center;
-    gap: 0.75rem;
+    gap: 0.5rem;
     min-inline-size: 0;
     block-size: var(--submit-block-size);
-    padding-inline: 0.75rem;
-    font-size: 1.25rem;
+    font-size: 0.9375rem;
     color: var(--foreground-l3);
-    background: var(--background-l4);
-    border-radius: var(--radius-lg);
 
     &[data-tone='success'] {
       color: var(--foreground-success);
-      background: var(--background-success);
     }
 
     span {
@@ -200,8 +186,8 @@
 
     :global(svg) {
       flex-shrink: 0;
-      inline-size: 1.5rem;
-      block-size: 1.5rem;
+      inline-size: 1.125rem;
+      block-size: 1.125rem;
     }
   }
 
@@ -210,29 +196,31 @@
     flex-shrink: 0;
     align-items: center;
     justify-content: center;
-    padding-inline: 1rem;
+    min-inline-size: 7rem;
+    padding-inline: 1.5rem;
     block-size: var(--submit-block-size);
-    color: var(--foreground-l4);
-    background: var(--background-l4);
+    font-family: var(--font-display);
+    font-size: 1.0625rem;
+    font-style: italic;
+    color: var(--ink-contrast);
+    background: var(--ink);
     cursor: pointer;
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-full);
+    transition: background-color 120ms ease;
 
     &:hover:enabled {
-      background: var(--background-l5);
+      background: var(--ink-hover);
     }
 
     &:focus-visible {
       outline: 2px solid var(--ring);
+      outline-offset: 2px;
+      border-radius: var(--radius-full);
     }
 
     &:disabled {
       cursor: not-allowed;
-      opacity: 0.5;
-    }
-
-    :global(svg) {
-      inline-size: 1.5rem;
-      block-size: 1.5rem;
+      opacity: 0.35;
     }
   }
 </style>

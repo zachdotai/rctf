@@ -206,7 +206,7 @@
       inline-size: 13rem;
       flex-shrink: 0;
       padding: 0.5rem;
-      border-inline-end: 2px solid var(--border);
+      border-inline-end: 1px solid var(--border);
     }
   }
 

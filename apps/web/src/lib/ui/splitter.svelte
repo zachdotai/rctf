@@ -50,20 +50,24 @@
 
   [data-part='resize-trigger'] {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: stretch;
+    justify-content: flex-start;
     inline-size: var(--splitter-handle-size, var(--space-2xs));
 
-    &[data-dragging] [data-part='resize-trigger-indicator'],
-    &:hover [data-part='resize-trigger-indicator'] {
-      background: var(--foreground-l3);
+    &::before {
+      content: '';
+      inline-size: 1px;
+      background: var(--border);
+      transition: background-color 120ms ease;
+    }
+
+    &[data-dragging]::before,
+    &:hover::before {
+      background: var(--foreground-l4);
     }
   }
 
   [data-part='resize-trigger-indicator'] {
-    inline-size: 2px;
-    block-size: var(--space-l);
-    background: var(--border);
-    border-radius: var(--radius-full);
+    display: none;
   }
 </style>

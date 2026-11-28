@@ -450,7 +450,7 @@
     gap: var(--space-2xs);
     padding: var(--space-2xs) var(--space-s);
     background: var(--background-l2);
-    border: 2px solid var(--border);
+    border: 1px solid var(--border);
     border-radius: var(--radius-md);
 
     &[data-status='completed'] job-status {
@@ -546,7 +546,7 @@
       color: inherit;
       text-align: start;
       background: var(--background-l2);
-      border: 2px solid var(--border);
+      border: 1px solid var(--border);
       border-radius: var(--radius-md);
       font-size: var(--step--1);
       cursor: pointer;

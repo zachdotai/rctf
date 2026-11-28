@@ -58,7 +58,16 @@
 
   <meta name="description" content={data.clientConfig.meta.description} />
 
-  <meta name="theme-color" content="#111111" />
+  <meta
+    name="theme-color"
+    content="#f5f5ee"
+    media="(prefers-color-scheme: light)"
+  />
+  <meta
+    name="theme-color"
+    content="#12110e"
+    media="(prefers-color-scheme: dark)"
+  />
   <link rel="canonical" href={data.clientConfig.origin} />
 
   <meta property="og:type" content="website" />
@@ -120,7 +129,7 @@
     padding: var(--space-3xs) var(--space-2xs);
     color: var(--foreground-l0);
     background: var(--background-l1);
-    border: 2px solid var(--border);
+    border: 1px solid var(--border);
     border-radius: var(--radius-md);
 
     &:not(:focus-visible) {

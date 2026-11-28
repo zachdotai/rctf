@@ -47,7 +47,7 @@
     block-size: 100%;
     user-select: none;
     background: var(--background-l3);
-    border-block-end: 2px solid var(--border);
+    border-block-end: 1px solid var(--border);
     color: var(--foreground-l3);
     font-size: var(--step--1);
   }

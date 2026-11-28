@@ -117,6 +117,9 @@
 
 <style>
   challenge-details {
+    --detail-gutter: clamp(1.25rem, 4cqi, 2.5rem);
+
+    container-type: inline-size;
     display: flex;
     flex-direction: column;
     inline-size: 100%;
@@ -143,7 +146,7 @@
     }
 
     :global([data-scope='tabs'][data-part='list']) {
-      padding-inline: 1.25rem;
+      margin-inline: var(--detail-gutter);
     }
 
     :global([data-scope='tabs'][data-part='content']:not([hidden])) {
@@ -152,7 +155,6 @@
       flex-direction: column;
       min-block-size: 0;
       overflow: hidden;
-      background: var(--background-l2);
     }
   }
 
@@ -177,8 +179,8 @@
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
-    gap: 0.5rem;
-    padding: 0.5rem 1.25rem 1rem;
-    background: var(--background-l2);
+    gap: 0.875rem;
+    padding: 1rem var(--detail-gutter) 1.25rem;
+    border-block-start: 1px solid var(--border);
   }
 </style>

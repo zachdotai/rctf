@@ -474,29 +474,40 @@
   --purple-a11: light-dark(#52009aba, #d19dff);
   --purple-a12: light-dark(#250049df, #f1ddfffa);
 
-  --background-l0: var(--gray-1);
-  --background-l1: light-dark(var(--gray-3), var(--gray-2));
-  --background-l2: light-dark(var(--gray-4), var(--gray-3));
-  --background-l3: light-dark(var(--gray-5), var(--gray-4));
-  --background-l4: light-dark(var(--gray-6), var(--gray-5));
-  --background-l5: light-dark(var(--gray-7), var(--gray-6));
-  --border:        var(--gray-6);
-  --ring:          var(--gray-8);
-  --foreground-l0: var(--gray-12);
-  --foreground-l1: var(--gray-11);
-  --foreground-l2: var(--gray-10);
-  --foreground-l3: var(--gray-9);
-  --foreground-l4: var(--gray-8);
-  --foreground-l5: light-dark(var(--gray-8), var(--gray-7));
+  /* Surfaces are flat: the canvas carries the page, hairlines carry structure,
+     and the fill steps stay within a few percent of the canvas. */
+  --background-l0: light-dark(#f5f5ee, #12110e);
+  --background-l1: light-dark(#f5f5ee, #12110e);
+  --background-l2: light-dark(#efefe8, #1b1a16);
+  --background-l3: light-dark(#e9e9e1, #22201c);
+  --background-l4: light-dark(#e4e4db, #292723);
+  --background-l5: light-dark(#dcdcd2, #33312b);
+  --background-raised: light-dark(#fdfdf8, #171612);
+  --background-input:  light-dark(#ffffff, #181713);
+  --border:        light-dark(#dcdcd3, #2c2a25);
+  --border-strong: light-dark(#c6c6c6, #45423b);
+  --ring:          light-dark(#16140f, #f5f5ee);
+  --foreground-l0: light-dark(#16140f, #f5f5ee);
+  --foreground-l1: light-dark(#33322e, #dad7cc);
+  --foreground-l2: light-dark(#4e4d48, #b8b5aa);
+  --foreground-l3: light-dark(#63625c, #97948b);
+  --foreground-l4: light-dark(#71706a, #8b887f);
+  --foreground-l5: light-dark(#a9a8a0, #5f5c55);
 
-  --background-accent:            var(--sky-4);
-  --background-accent-hover:      var(--sky-5);
-  --foreground-accent:            var(--sky-11);
+  /* Ink-on-canvas pair for solid actions (YC "Apply" pill). */
+  --ink:          light-dark(#16140f, #f5f5ee);
+  --ink-hover:    light-dark(#3a3832, #d8d5ca);
+  --ink-contrast: light-dark(#f5f5ee, #12110e);
+
+
+  --background-accent:            var(--background-l2);
+  --background-accent-hover:      var(--background-l3);
+  --foreground-accent:            var(--foreground-l0);
   --background-destructive:       var(--red-4);
   --background-destructive-hover: var(--red-5);
   --foreground-destructive:       var(--red-11);
   --background-success:           var(--jade-3);
-  --foreground-success:           var(--jade-11);
+  --foreground-success:           light-dark(#2f6b3a, #8cc799);
 
   --background-gold:      light-dark(var(--amber-a3), color-mix(in oklab, var(--amber-9) 15%, transparent));
   --foreground-gold-l0:   var(--amber-11);
@@ -507,28 +518,32 @@
   --background-bronze:    light-dark(var(--brown-a5), color-mix(in oklab, var(--brown-9) 25%, transparent));
   --foreground-bronze-l0: var(--brown-11);
   --foreground-bronze-l1: color-mix(in oklab, var(--brown-11) 70%, transparent);
-  --background-self-l0:   var(--jade-3);
-  --background-self-l1:   var(--jade-4);
-  --foreground-self-l0:   var(--jade-11);
-  --foreground-self-l1:   var(--jade-a11);
+  --background-self-l0:   var(--background-l3);
+  --background-self-l1:   var(--background-l3);
+  --foreground-self-l0:   var(--foreground-l0);
+  --foreground-self-l1:   var(--foreground-l3);
   --background-nth:       light-dark(var(--background-l4), var(--background-l3));
   --foreground-nth-l0:    var(--foreground-l0);
   --foreground-nth-l1:    var(--foreground-l3);
 
-  --foreground-first:   var(--red-9);
-  --foreground-second:  var(--amber-9);
-  --foreground-third:   var(--lime-9);
-  --foreground-fourth:  var(--jade-9);
-  --foreground-fifth:   var(--cyan-9);
-  --foreground-sixth:   var(--sky-9);
-  --foreground-seventh: var(--blue-9);
-  --foreground-eighth:  var(--violet-9);
-  --foreground-ninth:   var(--plum-9);
-  --foreground-tenth:   var(--pink-9);
+  /* Scoreboard series. Ranks 1-3 take the medal colors; ranks 4-10 follow a
+     categorical order in which every neighbouring pair (bronze first) stays at
+     OKLab ΔE ≥ 15 under normal vision and ≥ 8 under protan/deutan simulation
+     in both modes. The viewer's own team is drawn in ink. */
+  --foreground-first:   var(--foreground-gold-l0);
+  --foreground-second:  var(--foreground-silver-l0);
+  --foreground-third:   var(--foreground-bronze-l0);
+  --foreground-fourth:  light-dark(#257de0, #338ced);
+  --foreground-fifth:   light-dark(#008a17, #0aac23);
+  --foreground-sixth:   light-dark(#ee7fac, #e24d8b);
+  --foreground-seventh: light-dark(#f2a600, #d28e05);
+  --foreground-eighth:  light-dark(#00b894, #00a888);
+  --foreground-ninth:   light-dark(#6a4ce2, #9887ef);
+  --foreground-tenth:   light-dark(#ec4647, #eb6263);
 
-  --foreground-prose:             var(--gray-11);
-  --foreground-prose-link:        var(--sky-11);
-  --foreground-prose-inline-code: var(--red-11);
+  --foreground-prose:             var(--foreground-l1);
+  --foreground-prose-link:        var(--foreground-l0);
+  --foreground-prose-inline-code: var(--foreground-l0);
 
   --background-red-l0:       var(--red-a3);
   --background-red-l1:       var(--red-a2);
@@ -590,93 +605,22 @@
   --foreground-gray-l0:       var(--gray-a12);
   --foreground-gray-l1:       var(--gray-a11);
 
-  --category-background-l0:       var(--background-gray-l0);
-  --category-background-l1:       var(--background-gray-l1);
-  --category-background-l1-hover: var(--background-gray-l1-hover);
-  --category-foreground-l0:       var(--foreground-gray-l0);
-  --category-foreground-l1:       var(--foreground-gray-l1);
+  --category-background-l0:       transparent;
+  --category-background-l1:       transparent;
+  --category-background-l1-hover: var(--background-l2);
+  --category-foreground-l0:       var(--foreground-l0);
+  --category-foreground-l1:       var(--foreground-l3);
 
   color-scheme: light dark;
 }
 
-[data-category-color='crimson'] {
-  --category-background-l0:       var(--background-crimson-l0);
-  --category-background-l1:       var(--background-crimson-l1);
-  --category-background-l1-hover: var(--background-crimson-l1-hover);
-  --category-foreground-l0:       var(--foreground-crimson-l0);
-  --category-foreground-l1:       var(--foreground-crimson-l1);
-}
-
-[data-category-color='red'] {
-  --category-background-l0:       var(--background-red-l0);
-  --category-background-l1:       var(--background-red-l1);
-  --category-background-l1-hover: var(--background-red-l1-hover);
-  --category-foreground-l0:       var(--foreground-red-l0);
-  --category-foreground-l1:       var(--foreground-red-l1);
-}
-
-[data-category-color='orange'] {
-  --category-background-l0:       var(--background-orange-l0);
-  --category-background-l1:       var(--background-orange-l1);
-  --category-background-l1-hover: var(--background-orange-l1-hover);
-  --category-foreground-l0:       var(--foreground-orange-l0);
-  --category-foreground-l1:       var(--foreground-orange-l1);
-}
-
-[data-category-color='yellow'] {
-  --category-background-l0:       var(--background-yellow-l0);
-  --category-background-l1:       var(--background-yellow-l1);
-  --category-background-l1-hover: var(--background-yellow-l1-hover);
-  --category-foreground-l0:       var(--foreground-yellow-l0);
-  --category-foreground-l1:       var(--foreground-yellow-l1);
-}
-
-[data-category-color='green'] {
-  --category-background-l0:       var(--background-green-l0);
-  --category-background-l1:       var(--background-green-l1);
-  --category-background-l1-hover: var(--background-green-l1-hover);
-  --category-foreground-l0:       var(--foreground-green-l0);
-  --category-foreground-l1:       var(--foreground-green-l1);
-}
-
-[data-category-color='teal'] {
-  --category-background-l0:       var(--background-teal-l0);
-  --category-background-l1:       var(--background-teal-l1);
-  --category-background-l1-hover: var(--background-teal-l1-hover);
-  --category-foreground-l0:       var(--foreground-teal-l0);
-  --category-foreground-l1:       var(--foreground-teal-l1);
-}
-
-[data-category-color='sky'] {
-  --category-background-l0:       var(--background-sky-l0);
-  --category-background-l1:       var(--background-sky-l1);
-  --category-background-l1-hover: var(--background-sky-l1-hover);
-  --category-foreground-l0:       var(--foreground-sky-l0);
-  --category-foreground-l1:       var(--foreground-sky-l1);
-}
-
-[data-category-color='violet'] {
-  --category-background-l0:       var(--background-violet-l0);
-  --category-background-l1:       var(--background-violet-l1);
-  --category-background-l1-hover: var(--background-violet-l1-hover);
-  --category-foreground-l0:       var(--foreground-violet-l0);
-  --category-foreground-l1:       var(--foreground-violet-l1);
-}
-
-[data-category-color='plum'] {
-  --category-background-l0:       var(--background-plum-l0);
-  --category-background-l1:       var(--background-plum-l1);
-  --category-background-l1-hover: var(--background-plum-l1-hover);
-  --category-foreground-l0:       var(--foreground-plum-l0);
-  --category-foreground-l1:       var(--foreground-plum-l1);
-}
-
-[data-category-color='gray'] {
-  --category-background-l0:       var(--background-gray-l0);
-  --category-background-l1:       var(--background-gray-l1);
-  --category-background-l1-hover: var(--background-gray-l1-hover);
-  --category-foreground-l0:       var(--foreground-gray-l0);
-  --category-foreground-l1:       var(--foreground-gray-l1);
+/* Categories are told apart by their labels, not by color. */
+[data-category-color] {
+  --category-background-l0:       transparent;
+  --category-background-l1:       transparent;
+  --category-background-l1-hover: var(--background-l2);
+  --category-foreground-l0:       var(--foreground-l0);
+  --category-foreground-l1:       var(--foreground-l3);
 }
 
 [data-series-role='self']   { color: var(--foreground-self-l0); }

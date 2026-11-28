@@ -29,9 +29,10 @@
     display: flex;
     flex-direction: column;
     gap: var(--space-s);
-    padding: var(--space-s-m);
-    background: var(--background-l1);
-    border-radius: var(--radius-lg);
+    padding: var(--space-m);
+    background: var(--background-raised);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-xl);
   }
 
   card-header {
@@ -42,12 +43,16 @@
 
   card-title {
     display: block;
-    font-size: var(--step-1);
+    font-family: var(--font-display);
+    font-size: var(--step-3);
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
   }
 
   card-description {
     display: block;
-    font-size: var(--step--1);
+    font-size: 0.875rem;
     color: var(--foreground-l3);
   }
 </style>

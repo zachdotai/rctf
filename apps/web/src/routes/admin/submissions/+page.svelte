@@ -274,7 +274,7 @@
     align-items: center;
     gap: var(--space-xs);
     padding: var(--space-2xs);
-    border-block-end: 2px solid var(--border);
+    border-block-end: 1px solid var(--border);
   }
 
   submissions-reveal {

@@ -121,7 +121,7 @@ prose-content {
 
   blockquote {
     padding-inline-start: var(--space-s);
-    border-inline-start: 2px solid var(--border);
+    border-inline-start: 1px solid var(--border);
 
     &,
     & :is(p, li) {
@@ -162,7 +162,7 @@ prose-content {
     font-weight: var(--font-weight-medium);
     color: var(--foreground-l0);
     background-color: var(--background-l2);
-    border: 2px solid var(--border);
+    border: 1px solid var(--border);
     border-radius: var(--radius-md);
     padding: 0.125em 0.5em;
   }
@@ -178,11 +178,11 @@ prose-content {
   }
 
   thead {
-    border-block-end: 2px solid var(--border);
+    border-block-end: 1px solid var(--border);
   }
 
   tr {
-    border-block: 2px solid var(--border);
+    border-block: 1px solid var(--border);
 
     &:first-child {
       border-block-start: 0;

@@ -168,7 +168,7 @@
     block-size: 2rem;
     color: var(--foreground-l2);
     background: var(--background-l4);
-    border: 2px solid var(--border);
+    border: 1px solid var(--border);
     border-radius: var(--radius-md);
     cursor: pointer;
 
@@ -210,7 +210,7 @@
   drill-header {
     display: flex;
     flex-shrink: 0;
-    border-block-end: 2px solid var(--border);
+    border-block-end: 1px solid var(--border);
 
     button {
       display: flex;
