@@ -206,7 +206,7 @@
     align-items: center;
     gap: var(--space-2xs);
     padding: var(--space-2xs) var(--space-xs);
-    border-block-end: 2px solid var(--border);
+    border-block-end: 1px solid var(--border);
   }
 
   drawer-title {
@@ -255,7 +255,7 @@
   drawer-search {
     flex-shrink: 0;
     padding: var(--space-2xs) var(--space-xs);
-    border-block-end: 2px solid var(--border);
+    border-block-end: 1px solid var(--border);
   }
 
   mode-controls {
@@ -264,7 +264,7 @@
     align-items: center;
     gap: var(--space-3xs);
     padding: var(--space-2xs) var(--space-xs);
-    border-block-end: 2px solid var(--border);
+    border-block-end: 1px solid var(--border);
 
     button {
       display: flex;
@@ -372,7 +372,7 @@
     block-size: 2.5rem;
     color: var(--foreground-l3);
     background: transparent;
-    border: 2px solid var(--border);
+    border: 1px solid var(--border);
     border-radius: var(--radius-md);
     font-size: var(--step--1);
     cursor: pointer;

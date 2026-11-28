@@ -113,7 +113,7 @@
 
     &[data-type='connection'] {
       overflow: hidden;
-      border: 2px solid var(--border);
+      border: 1px solid var(--border);
       border-radius: var(--radius-md);
 
       alert-header {

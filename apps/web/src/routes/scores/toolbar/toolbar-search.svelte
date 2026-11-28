@@ -59,22 +59,31 @@
     align-items: center;
     inline-size: 100%;
     gap: var(--space-2xs);
-    block-size: 2.25rem;
-    padding-inline: var(--space-s);
+    block-size: 2.5rem;
+    padding-inline: 0.75rem;
     color: var(--foreground-l1);
-    background: var(--background-l4);
+    background: var(--background-input);
+    border: 1px solid var(--border-strong);
     border-radius: var(--radius-md);
     cursor: text;
+    transition: border-color 120ms ease;
+
+    &:hover {
+      border-color: var(--foreground-l4);
+    }
 
     &:focus-within {
-      outline: 2px solid var(--ring);
+      outline: 2px solid transparent;
+      outline-offset: -1px;
+      border-color: var(--foreground-l0);
+      box-shadow: 0 0 0 1px var(--foreground-l0);
     }
 
     > :global(svg),
     :global([role='status']) {
       flex-shrink: 0;
-      font-size: 1.125rem;
-      color: var(--foreground-l1);
+      font-size: 1rem;
+      color: var(--foreground-l4);
     }
   }
 
@@ -88,7 +97,7 @@
     text-overflow: ellipsis;
 
     &::placeholder {
-      color: var(--foreground-l1);
+      color: var(--foreground-l4);
       text-overflow: ellipsis;
     }
   }

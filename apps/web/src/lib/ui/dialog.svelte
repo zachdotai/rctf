@@ -82,7 +82,7 @@
     position: fixed;
     inset: 0;
     z-index: var(--layer-backdrop);
-    background: rgb(0 0 0 / 0.5);
+    background: rgb(22 20 15 / 0.35);
   }
 
   [data-part='positioner'] {
@@ -96,15 +96,16 @@
     display: flex;
     flex-direction: column;
     overflow: clip;
-    background: var(--dialog-content-background, var(--background-l1));
-    border: 2px solid var(--border);
+    background: var(--dialog-content-background, var(--background-raised));
+    border: 1px solid var(--border-strong);
   }
 
   [data-part='title'] {
     flex-shrink: 0;
-    padding: 0.375rem 1rem;
-    color: var(--foreground-l3);
-    background: var(--background-l3);
+    padding: 1rem 1.25rem 0.25rem;
+    font-family: var(--font-display);
+    font-size: var(--step-2);
+    color: var(--foreground-l0);
 
     &[data-hidden] {
       position: absolute;

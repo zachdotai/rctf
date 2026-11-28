@@ -91,38 +91,31 @@
     display: flex;
     gap: var(--space-2xs);
     align-items: center;
-    block-size: 3rem;
-    inline-size: 10rem;
+    block-size: 2.5rem;
+    inline-size: 8.5rem;
     overflow: hidden;
-    padding-inline: var(--space-s) var(--space-2xs);
-    background: var(--background-l2);
-    border-radius: var(--radius-lg);
+    font-size: 0.875rem;
+    letter-spacing: 0.025em;
 
     &[data-place='gold'] {
       --sparkline-stroke: var(--foreground-gold-l0);
       --stat-strong: var(--foreground-gold-l0);
       --stat-soft: var(--foreground-gold-l1);
-
-      background: var(--background-gold);
     }
 
     &[data-place='silver'] {
       --sparkline-stroke: var(--foreground-silver-l0);
       --stat-strong: var(--foreground-silver-l0);
       --stat-soft: var(--foreground-silver-l1);
-
-      background: var(--background-silver);
     }
 
     &[data-place='bronze'] {
       --sparkline-stroke: var(--foreground-bronze-l0);
       --stat-strong: var(--foreground-bronze-l0);
       --stat-soft: var(--foreground-bronze-l1);
-
-      background: var(--background-bronze);
     }
 
-    @media (width < 64rem) {
+    @media (width < 90rem) {
       display: none;
     }
   }
@@ -153,7 +146,7 @@
 
     path {
       fill: none;
-      stroke-width: 2;
+      stroke-width: 1.25;
       stroke-linecap: round;
       stroke-linejoin: round;
     }

@@ -128,7 +128,7 @@
     gap: var(--space-3xs);
     padding: var(--space-3xs);
     background: var(--background-l2);
-    border: 2px solid var(--border);
+    border: 1px solid var(--border);
     border-radius: var(--radius-md);
 
     button {

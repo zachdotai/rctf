@@ -156,7 +156,7 @@
     block-size: 100%;
     inline-size: 100%;
     background: var(--background-l1);
-    border: 2px solid var(--border);
+    border: 1px solid var(--border);
     border-radius: var(--radius-lg);
     overflow: hidden;
 

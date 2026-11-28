@@ -86,7 +86,7 @@
     flex-direction: column;
     overflow: clip;
     background: var(--background-l2);
-    border: 2px solid var(--border);
+    border: 1px solid var(--border);
     border-radius: var(--radius-md);
   }
 
@@ -213,7 +213,7 @@
   log-footer {
     display: flex;
     justify-content: flex-end;
-    border-block-start: 2px solid var(--border);
+    border-block-start: 1px solid var(--border);
 
     button {
       display: inline-flex;

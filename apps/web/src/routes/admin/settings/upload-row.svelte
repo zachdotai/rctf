@@ -123,7 +123,7 @@
     justify-content: center;
     block-size: 4.5rem;
     padding-inline: var(--space-m);
-    border: 2px solid var(--border);
+    border: 1px solid var(--border);
     border-radius: var(--radius-md);
 
     &[data-mode='light'] {

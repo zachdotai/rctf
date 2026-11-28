@@ -87,7 +87,7 @@
     inline-size: var(--popover-width, max-content);
     max-inline-size: min(90vw, 24rem);
     background: var(--background-l1);
-    border: 2px solid var(--border);
+    border: 1px solid var(--border);
     border-radius: var(--radius-md);
     overflow: hidden;
   }

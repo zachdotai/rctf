@@ -237,6 +237,7 @@
     display: flex;
     block-size: calc(100dvh - var(--header-height));
     min-block-size: 0;
+    border-block-start: 1px solid var(--border);
     --splitter-handle-size: 0.5rem;
 
     &[data-form='mobile'] {
@@ -245,7 +246,6 @@
       pane-surface[data-side='list'] {
         flex: 1;
         min-block-size: 0;
-        border-start-end-radius: 0;
       }
     }
   }
@@ -255,17 +255,7 @@
     flex-direction: column;
     block-size: 100%;
     overflow: hidden;
-    background: var(--background-l1);
-
-    &[data-side='list'] {
-      border-start-end-radius: var(--radius-3xl);
-      border-end-end-radius: var(--radius-3xl);
-    }
-
-    &[data-side='detail'] {
-      border-start-start-radius: var(--radius-3xl);
-      border-end-start-radius: var(--radius-3xl);
-    }
+    background: var(--background-l0);
   }
 
   challenges-list-slot,

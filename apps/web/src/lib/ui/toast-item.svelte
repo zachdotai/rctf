@@ -39,7 +39,7 @@
     height: var(--height);
     padding: var(--space-2xs) var(--space-xs);
     background: var(--background-l1);
-    border: 2px solid var(--border);
+    border: 1px solid var(--border);
     border-radius: var(--radius-md);
     translate: var(--x) var(--y);
     scale: var(--scale);

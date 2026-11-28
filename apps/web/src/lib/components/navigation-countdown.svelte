@@ -50,14 +50,11 @@
 <style>
   nav-countdown {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    block-size: 3rem;
-    min-inline-size: 8rem;
-    padding-inline: var(--space-s);
-    background: var(--background-l2);
-    border-radius: var(--radius-lg);
+    align-items: baseline;
+    gap: 0.375rem;
+    font-size: 0.875rem;
+    letter-spacing: 0.025em;
+    white-space: nowrap;
 
     @media (width < 64rem) {
       display: none;
@@ -67,13 +64,12 @@
   countdown-time {
     display: block;
     color: var(--foreground-l0);
-    white-space: nowrap;
+    font-weight: 400;
     font-variant-numeric: tabular-nums;
   }
 
   countdown-label {
     display: block;
-    font-size: 0.75rem;
     color: var(--foreground-l3);
   }
 </style>

@@ -123,9 +123,10 @@
     inline-size: 2rem;
 
     strong {
+      font-family: var(--font-display);
       color: var(--rank-fg-l0, var(--foreground-l0));
       font-weight: 400;
-      font-variant-numeric: tabular-nums;
+      font-variant-numeric: lining-nums tabular-nums;
     }
 
     small {
@@ -136,7 +137,8 @@
   }
 
   team-avatar {
-    --avatar-size: 2.5rem;
+    --avatar-size: 2.25rem;
+    --avatar-radius: var(--radius-full);
     flex-shrink: 0;
   }
 
@@ -155,6 +157,7 @@
 
     a {
       overflow: hidden;
+      font-weight: 500;
       color: var(--rank-fg-l0, var(--foreground-l0));
       white-space: nowrap;
       text-overflow: ellipsis;
@@ -234,13 +237,16 @@
     }
 
     team-avatar {
-      --avatar-size: 3rem;
+      --avatar-size: 2.5rem;
     }
 
-    team-rank strong,
+    team-rank strong {
+      font-size: var(--step-2);
+    }
+
     team-name a,
     score-points strong {
-      font-size: var(--step-1);
+      font-size: 1.0625rem;
     }
   }
 

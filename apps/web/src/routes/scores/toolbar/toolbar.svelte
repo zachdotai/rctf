@@ -234,9 +234,12 @@
         font-size: 1rem;
       }
 
-      &:hover,
+      &:hover {
+        color: var(--foreground-l0);
+      }
+
       &[data-active] {
-        color: var(--foreground-l1);
+        color: var(--foreground-l0);
         background: var(--background-l3);
       }
 
@@ -296,9 +299,9 @@
     align-items: center;
     gap: 0.375rem;
     block-size: 2.25rem;
-    padding-inline: 0.75rem;
-    background: var(--background-l2);
-    border-radius: var(--radius-md);
+    padding-inline: 0.875rem;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-full);
     white-space: nowrap;
 
     > span[data-label] {
@@ -370,8 +373,7 @@
     block-size: 2.25rem;
     inline-size: 2.25rem;
     color: var(--foreground-l3);
-    background: var(--background-l2);
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-full);
     cursor: pointer;
 
     :global(svg) {
@@ -380,8 +382,8 @@
 
     &:hover,
     &[data-state='open'] {
-      color: var(--foreground-l1);
-      background: var(--background-l3);
+      color: var(--foreground-l0);
+      background: var(--background-l2);
     }
 
     &:focus-visible {
@@ -394,12 +396,12 @@
     align-items: center;
     gap: 0.375rem;
     block-size: 2.25rem;
-    padding-inline: 0.75rem;
-    color: var(--foreground-l3);
-    background: var(--background-l2);
-    border-radius: var(--radius-md);
+    padding-inline: 0.875rem;
+    color: var(--foreground-l1);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-full);
     cursor: pointer;
-    font-size: var(--step--1);
+    font-size: 0.8125rem;
     white-space: nowrap;
 
     :global(svg) {
@@ -415,7 +417,7 @@
 
     &:hover,
     &[data-state='open'] {
-      background: var(--background-l3);
+      border-color: var(--foreground-l3);
     }
 
     &:focus-visible {

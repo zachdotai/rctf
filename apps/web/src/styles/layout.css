@@ -19,7 +19,7 @@
   --space-xl-2xl:  clamp(3rem, 2.4453rem + 2.7057vw, 4.5rem);
   --space-2xl-3xl: clamp(4rem, 2.9831rem + 4.9605vw, 6.75rem);
 
-  --header-height: 4.5rem;
+  --header-height: 4rem;
 }
 
 html {

@@ -23,15 +23,20 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0.75rem 1rem;
-    font-size: 1.5rem;
-    color: var(--foreground-l2);
-    background: var(--background-l2);
-    border-radius: var(--radius-lg);
+    inline-size: 2.25rem;
+    block-size: 2.25rem;
+    font-size: 1.0625rem;
+    color: var(--foreground-l3);
+    border-radius: var(--radius-full);
     cursor: pointer;
+    transition: color 120ms ease;
 
     &:hover {
-      background: var(--background-l3);
+      color: var(--foreground-l0);
+    }
+
+    &:focus-visible {
+      border-radius: var(--radius-full);
     }
   }
 </style>

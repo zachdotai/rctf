@@ -37,7 +37,7 @@
     inline-size: var(--avatar-size, 2.5rem);
     block-size: var(--avatar-size, 2.5rem);
     overflow: hidden;
-    border-radius: var(--avatar-radius, var(--radius-lg));
+    border-radius: var(--avatar-radius, var(--radius-full));
   }
 
   [data-part='image'] {
@@ -54,8 +54,8 @@
     block-size: 100%;
     font-size: min(var(--step--1), calc(var(--avatar-size, 2.5rem) * 0.5));
     color: var(--foreground-l3);
-    background: var(--background-l4);
-    border: 1.5px solid var(--gray-a3);
+    background: var(--background-l2);
+    border: 1px solid var(--border);
     border-radius: inherit;
 
     &[hidden] {

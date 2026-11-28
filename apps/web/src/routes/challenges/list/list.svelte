@@ -166,9 +166,8 @@
           {@const solvedInCategory = entries.filter(c =>
             solvedIds.has(c.id)
           ).length}
-          <challenges-list-group-header data-category-color={config.color}>
+          <challenges-list-group-header>
             <button {...props} data-expanded={expanded || undefined}>
-              <config.icon data-slot="icon" />
               <span data-slot="name">{config.name}</span>
               <span data-slot="count">
                 <strong>{solvedInCategory}</strong> / {entries.length}
@@ -179,12 +178,8 @@
         {/snippet}
 
         {#snippet content({ value, props })}
-          {@const config = getCategoryConfig(value)}
           {@const entries = groupByCategory.get(value)?.challenges ?? []}
-          <challenges-list-group-body
-            data-category-color={config.color}
-            {...props}
-          >
+          <challenges-list-group-body {...props}>
             <ul>
               {#each entries as challenge (challenge.id)}
                 <ChallengesListItem
@@ -206,6 +201,8 @@
 
 <style>
   challenges-list {
+    --list-gutter: 1.5rem;
+
     container-type: inline-size;
     container-name: challenges-list;
     display: flex;
@@ -219,7 +216,7 @@
     min-block-size: 0;
     overflow-y: auto;
     overscroll-behavior: none;
-    padding-block-end: var(--space-s);
+    padding-block-end: var(--space-l);
   }
 
   challenges-list-group-header {
@@ -227,22 +224,25 @@
     inset-block-start: 0;
     z-index: 2;
     display: block;
-    background: var(--background-l1);
+    background: var(--background-l0);
 
     button {
       display: flex;
       align-items: center;
-      gap: 0.625rem;
+      gap: 0.5rem;
       inline-size: 100%;
-      padding: 0.5rem 0.5rem 0.5rem 0.625rem;
+      padding: 1.75rem var(--list-gutter) 0.625rem;
       text-align: start;
-      color: var(--category-foreground-l1);
-      background: var(--category-background-l0);
       cursor: pointer;
+      border-block-end: 1px solid var(--border);
 
       &:focus-visible {
         outline: 2px solid var(--ring);
         outline-offset: -2px;
+      }
+
+      &:hover [data-slot='name'] {
+        opacity: 0.6;
       }
 
       &[data-expanded] :global([data-slot='chevron']) {
@@ -250,31 +250,33 @@
       }
     }
 
-    :global([data-slot='icon']) {
-      flex-shrink: 0;
-      font-size: 1rem;
-    }
-
     [data-slot='name'] {
-      font-size: var(--step-0);
+      font-size: var(--eyebrow-size);
+      font-weight: var(--eyebrow-weight);
+      letter-spacing: var(--eyebrow-tracking);
+      text-transform: uppercase;
+      color: var(--foreground-l0);
+      transition: opacity 120ms ease;
     }
 
     [data-slot='count'] {
       margin-inline-start: auto;
-      color: var(--category-foreground-l1);
+      font-size: 0.75rem;
+      letter-spacing: 0.02em;
+      color: var(--foreground-l4);
       white-space: nowrap;
       font-variant-numeric: tabular-nums;
 
       strong {
-        color: var(--category-foreground-l0);
-        font-weight: var(--font-weight-normal);
+        color: var(--foreground-l2);
+        font-weight: 400;
       }
     }
 
     :global([data-slot='chevron']) {
       flex-shrink: 0;
-      font-size: 1rem;
-      color: var(--category-foreground-l1);
+      font-size: 0.625rem;
+      color: var(--foreground-l4);
       rotate: -90deg;
       transition: rotate 150ms ease;
     }
@@ -282,7 +284,6 @@
 
   challenges-list-group-body {
     display: block;
-    background: var(--category-background-l1);
 
     ul {
       display: flex;

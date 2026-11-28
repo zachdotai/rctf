@@ -584,7 +584,7 @@
     display: flex;
     flex: none;
     padding: 0.5rem;
-    border-block-start: 2px solid var(--border);
+    border-block-start: 1px solid var(--border);
   }
 
   schema-form-detail {
@@ -614,7 +614,7 @@
     padding: 0.5rem 1rem;
     color: var(--foreground-l3);
     font-size: var(--step--1);
-    border-block-end: 2px solid var(--border);
+    border-block-end: 1px solid var(--border);
 
     button {
       padding: 0;
@@ -704,7 +704,7 @@
     }
 
     schema-form-tree {
-      border-block-end: 2px solid var(--border);
+      border-block-end: 1px solid var(--border);
     }
 
     tree-scroll {

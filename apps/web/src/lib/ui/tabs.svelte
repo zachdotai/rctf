@@ -64,27 +64,45 @@
 <style>
   [data-part='list'] {
     display: flex;
+    gap: 1.75rem;
+    border-block-end: 1px solid var(--border);
   }
 
   [data-part='trigger'] {
     display: inline-flex;
     align-items: center;
     gap: 0.375rem;
-    padding: 0.25rem 1rem;
-    color: var(--foreground-l2);
+    margin-block-end: -1px;
+    padding-block: 0.75rem;
+    font-size: 0.875rem;
+    letter-spacing: 0.02em;
+    color: var(--foreground-l3);
     white-space: nowrap;
     cursor: pointer;
-    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    border-block-end: 1px solid transparent;
+    transition: color 120ms ease;
+
+    &:hover {
+      color: var(--foreground-l0);
+    }
 
     &[data-selected] {
       color: var(--foreground-l0);
-      background: var(--background-l2);
+      border-block-end-color: var(--foreground-l0);
+    }
+
+    &:focus-visible {
+      outline-offset: 2px;
     }
 
     :global([data-slot='tab-icon']) {
-      flex-shrink: 0;
-      font-size: 1rem;
+      display: none;
     }
+  }
+
+  tab-count {
+    color: var(--foreground-l4);
+    font-variant-numeric: tabular-nums;
   }
 
   tab-invalid {

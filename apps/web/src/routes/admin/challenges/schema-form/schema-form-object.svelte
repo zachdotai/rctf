@@ -97,7 +97,7 @@
     gap: var(--space-2xs);
     padding-block: var(--space-3xs);
     padding-inline-start: var(--space-s);
-    border-inline-start: 2px solid var(--border);
+    border-inline-start: 1px solid var(--border);
   }
 
   sf-object-heading {

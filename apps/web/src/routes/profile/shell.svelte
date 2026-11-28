@@ -144,20 +144,27 @@
   profile-tabbar {
     grid-area: tabbar;
     display: flex;
-    gap: var(--space-3xs);
-    padding-inline: var(--space-s);
+    gap: 1.75rem;
+    margin-inline: var(--space-l);
+    border-block-end: 1px solid var(--border);
 
     button {
-      flex: 1;
-      padding-block: var(--space-2xs);
-      color: var(--foreground-l2);
-      background: var(--background-l2);
+      margin-block-end: -1px;
+      padding-block: 0.75rem;
+      font-size: 0.875rem;
+      letter-spacing: 0.02em;
+      color: var(--foreground-l3);
       cursor: pointer;
-      border-radius: var(--radius-md);
+      border-block-end: 1px solid transparent;
+      transition: color 120ms ease;
+
+      &:hover {
+        color: var(--foreground-l0);
+      }
 
       &[data-selected] {
         color: var(--foreground-l0);
-        background: var(--background-l3);
+        border-block-end-color: var(--foreground-l0);
       }
     }
   }

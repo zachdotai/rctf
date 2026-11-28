@@ -69,7 +69,7 @@
     display: flex;
     align-items: center;
     gap: var(--space-3xs);
-    border: 2px solid var(--border);
+    border: 1px solid var(--border);
     border-radius: var(--radius-md);
 
     &:hover {

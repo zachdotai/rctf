@@ -403,7 +403,7 @@
 
 <style>
   scores-shell {
-    --score-row-gap: 4px;
+    --score-row-gap: 1px;
     --score-row-height-full: 68px;
     --score-row-height: calc(
       var(--score-row-height-full) - var(--score-row-gap)
@@ -574,8 +574,8 @@
     /* not one huge repeating-linear-gradient because firefox misrenders giant gradient primitives??? */
     background-image: linear-gradient(
       to bottom,
-      var(--background-l2) 0 var(--score-row-height),
-      transparent var(--score-row-height)
+      transparent var(--score-row-height),
+      var(--border) var(--score-row-height)
     );
     background-size: 100% var(--score-row-height-full);
   }
@@ -589,6 +589,15 @@
     block-size: var(--score-row-height-full);
     contain: layout style paint;
     background: var(--background-l0);
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset-inline: 0;
+      inset-block-end: 0;
+      block-size: var(--score-row-gap);
+      background: var(--border);
+    }
 
     &:has(:global(a:focus-visible))::after {
       content: '';
@@ -640,24 +649,14 @@
       position: absolute;
       inset: 0;
       z-index: -1;
-      border-radius: var(--radius-lg);
-    }
-
-    &::before {
-      background: var(--background-l2);
     }
 
     &[data-hovered]::before {
-      background: color-mix(
-        in oklab,
-        var(--foreground-l0) 4%,
-        var(--background-l2)
-      );
+      background: var(--background-l2);
     }
 
-    &[data-ranked]::after {
-      inline-size: min(24rem, 100%);
-      background: linear-gradient(to right, var(--rank-glow), transparent);
+    &::after {
+      display: none;
     }
 
     &[data-rank='first'] {
@@ -799,16 +798,9 @@
       flex-shrink: 0;
       inline-size: var(--score-content-width);
       block-size: var(--score-row-height);
-      background: var(--background-l2);
-      border-start-end-radius: var(--radius-lg);
-      border-end-end-radius: var(--radius-lg);
 
       &[data-hovered] {
-        background: color-mix(
-          in oklab,
-          var(--foreground-l0) 4%,
-          var(--background-l2)
-        );
+        background: var(--background-l2);
       }
 
       &[data-current] {
@@ -823,10 +815,11 @@
     display: flex;
     flex-direction: column;
     max-inline-size: 16rem;
-    padding: 0.375rem 0.625rem;
-    background: var(--background-l2);
-    border: 2px solid var(--border);
-    border-radius: var(--radius-sm);
+    padding: 0.5rem 0.75rem;
+    background: var(--background-raised);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-md);
+    box-shadow: 0 8px 24px rgb(22 20 15 / 0.08);
     pointer-events: none;
     line-height: 1.35;
     translate: -50% calc(-100% - 0.625rem);
@@ -841,21 +834,21 @@
       inset-inline-start: 50%;
       inline-size: 0.625rem;
       block-size: 0.625rem;
-      background: var(--background-l2);
+      background: var(--background-raised);
       translate: -50%;
       rotate: 45deg;
     }
 
     &[data-place='top']::after {
       inset-block-end: -0.4375rem;
-      border-inline-end: 2px solid var(--border);
-      border-block-end: 2px solid var(--border);
+      border-inline-end: 1px solid var(--border-strong);
+      border-block-end: 1px solid var(--border-strong);
     }
 
     &[data-place='bottom']::after {
       inset-block-start: -0.4375rem;
-      border-inline-start: 2px solid var(--border);
-      border-block-start: 2px solid var(--border);
+      border-inline-start: 1px solid var(--border-strong);
+      border-block-start: 1px solid var(--border-strong);
     }
 
     strong {

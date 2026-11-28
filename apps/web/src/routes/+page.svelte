@@ -1,18 +1,30 @@
 <script lang="ts">
   import Markdown from '$lib/components/markdown.svelte'
-  import Card from '$lib/ui/card.svelte'
+  import Button from '$lib/ui/button.svelte'
   import type { PageProps } from './$types'
 
   const { data }: PageProps = $props()
+
+  const titleWords = $derived(data.clientConfig.ctfName.trim().split(/\s+/))
+  const leadWord = $derived(titleWords[0] ?? '')
+  const restWords = $derived(titleWords.slice(1).join(' '))
 </script>
 
 <home-page>
-  <Card>
-    <Markdown content={data.clientConfig.homeContent} />
-  </Card>
+  <home-hero>
+    <h1><em>{leadWord}</em> {restWords}</h1>
+    <hero-copy>
+      <Markdown content={data.clientConfig.homeContent} />
+    </hero-copy>
+    <hero-actions>
+      <Button href="/challenges" size="lg">View challenges</Button>
+      <a href="/scores">Scoreboard</a>
+    </hero-actions>
+  </home-hero>
 
   {#if data.clientConfig.sponsors.length > 0}
-    <Card title="Sponsors">
+    <home-sponsors>
+      <sponsors-label>Sponsored by</sponsors-label>
       <sponsor-grid>
         {#each data.clientConfig.sponsors as sponsor (sponsor.name)}
           {@const lightIcon = sponsor.iconLight || sponsor.icon}
@@ -50,7 +62,7 @@
           </svelte:element>
         {/each}
       </sponsor-grid>
-    </Card>
+    </home-sponsors>
   {/if}
 
   <footer>
@@ -64,40 +76,114 @@
 <style>
   home-page {
     display: flex;
+    flex: 1;
     flex-direction: column;
-    gap: var(--space-s);
     inline-size: 100%;
-    max-inline-size: calc(var(--measure) + 2rem);
-    margin-inline: auto;
     padding-inline: 1rem;
 
     @media (width >= 48rem) {
-      max-inline-size: calc(var(--measure) + 4.5rem);
       padding-inline: 2.25rem;
     }
   }
 
+  home-hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-m);
+    min-block-size: calc(78dvh - var(--header-height));
+    padding-block: var(--space-2xl) var(--space-xl);
+    text-align: center;
+  }
+
+  h1 {
+    max-inline-size: 16ch;
+    margin: 0;
+    font-size: clamp(2.75rem, 1.6rem + 5vw, 5.5rem);
+    line-height: 1.04;
+    letter-spacing: -0.02em;
+
+    em {
+      font-style: italic;
+    }
+  }
+
+  hero-copy {
+    display: block;
+    max-inline-size: 34rem;
+
+    :global(prose-content) {
+      font-size: 1.1875rem;
+      line-height: 1.6;
+      color: var(--foreground-l1);
+    }
+  }
+
+  hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-m);
+    margin-block-start: var(--space-2xs);
+
+    a:not([data-variant]) {
+      --underline: currentColor;
+
+      font-size: 0.9375rem;
+      letter-spacing: 0.02em;
+      color: var(--foreground-l0);
+      text-underline-offset: 0.3em;
+      transition: opacity 120ms ease;
+
+      &:hover {
+        opacity: 0.6;
+      }
+    }
+  }
+
+  home-sponsors {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-m);
+    inline-size: 100%;
+    max-inline-size: 64rem;
+    margin-inline: auto;
+    padding-block: var(--space-l);
+    border-block-start: 1px solid var(--border);
+  }
+
+  sponsors-label {
+    font-size: var(--eyebrow-size);
+    font-weight: var(--eyebrow-weight);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--foreground-l3);
+  }
+
   sponsor-grid {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-s);
+    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+    gap: var(--space-m);
+    inline-size: 100%;
 
     a,
     article {
       display: flex;
       flex-direction: column;
-      gap: var(--space-xs);
+      align-items: center;
+      gap: var(--space-2xs);
       padding: var(--space-s);
-      border-radius: var(--radius-md);
-      background: var(--background-l2);
-    }
-
-    a {
+      text-align: center;
       text-decoration: none;
+      color: inherit;
+      border-radius: var(--radius-xl);
     }
 
     a:hover {
-      background: var(--background-l3);
+      background: var(--background-l2);
     }
 
     sponsor-icon[data-invert] img {
@@ -107,21 +193,20 @@
     img {
       inline-size: 100%;
       block-size: auto;
-      max-block-size: 8rem;
+      max-block-size: 4rem;
       object-fit: contain;
-      padding: var(--space-2xs);
     }
 
     h3 {
       font-size: var(--step-1);
-      font-weight: var(--font-weight-medium);
     }
   }
 
   footer {
-    padding-block: var(--space-s);
+    margin-block-start: auto;
+    padding-block: var(--space-m);
     text-align: center;
-    font-size: var(--step--1);
+    font-size: 0.8125rem;
     color: var(--foreground-l4);
 
     a {

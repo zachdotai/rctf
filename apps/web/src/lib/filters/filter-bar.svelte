@@ -194,7 +194,7 @@
     block-size: 2rem;
     color: var(--foreground-l2);
     background: var(--background-l4);
-    border: 2px solid var(--border);
+    border: 1px solid var(--border);
     border-radius: var(--radius-md);
     cursor: pointer;
 
@@ -270,7 +270,7 @@
     align-items: stretch;
     overflow: hidden;
     background: var(--background-l2);
-    border: 2px solid var(--border);
+    border: 1px solid var(--border);
     border-radius: var(--radius-md);
     font-size: var(--step--1);
 
@@ -285,7 +285,7 @@
     gap: var(--space-3xs);
     padding-inline: 0.5rem;
     color: var(--foreground-l3);
-    border-inline-end: 2px solid var(--border);
+    border-inline-end: 1px solid var(--border);
     white-space: nowrap;
 
     :global(svg) {
@@ -339,7 +339,7 @@
     color: var(--foreground-l3);
     background: transparent;
     border: none;
-    border-inline-start: 2px solid var(--border);
+    border-inline-start: 1px solid var(--border);
     cursor: pointer;
 
     &:hover {

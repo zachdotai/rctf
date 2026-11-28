@@ -74,7 +74,7 @@
     padding: 0.5rem 0.75rem;
     text-align: start;
     cursor: pointer;
-    border: 2px solid var(--border);
+    border: 1px solid var(--border);
     border-radius: var(--radius-md);
 
     &:hover {

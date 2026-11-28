@@ -26,24 +26,26 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: var(--space-2xs);
+    gap: 0.375rem;
     max-inline-size: 24rem;
     margin-inline: auto;
     padding-block: var(--space-2xl);
     text-align: center;
 
     :global(svg) {
-      font-size: 2.5rem;
-      color: var(--foreground-l4);
+      display: none;
     }
   }
 
   [data-part='title'] {
-    color: var(--foreground-l3);
+    font-family: var(--font-display);
+    font-size: var(--step-2);
+    font-style: italic;
+    color: var(--foreground-l2);
   }
 
   [data-part='subtitle'] {
-    font-size: var(--step--1);
-    color: var(--foreground-l5);
+    font-size: 0.875rem;
+    color: var(--foreground-l4);
   }
 </style>

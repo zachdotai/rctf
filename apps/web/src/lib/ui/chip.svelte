@@ -16,15 +16,13 @@
     flex-shrink: 0;
     align-items: center;
     gap: var(--space-3xs);
-    padding: 0.125rem 0.375rem;
-    font-size: 0.75rem;
-    color: inherit;
+    padding: 0.1875rem 0.5rem;
+    font-size: 0.8125rem;
+    font-weight: 400;
+    line-height: 1.3;
+    color: var(--foreground-l1);
     white-space: nowrap;
-    background: var(--background-l2);
+    background: var(--background-l3);
     border-radius: var(--radius-sm);
-
-    @media (width >= 40rem) {
-      font-size: 0.875rem;
-    }
   }
 </style>

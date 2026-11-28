@@ -130,20 +130,28 @@
 
   [data-part='input'] {
     inline-size: 100%;
-    block-size: 2.25rem;
-    padding-inline: var(--space-2xs) 2.25rem;
+    block-size: 2.5rem;
+    padding-inline: 0.75rem 2.25rem;
     color: var(--foreground-l0);
-    background: var(--background-l4);
-    border: 2px solid transparent;
+    background: var(--background-input);
+    border: 1px solid var(--border-strong);
     border-radius: var(--radius-md);
+    transition: border-color 120ms ease;
 
     &[data-has-prefix] {
       padding-inline-start: 2.5rem;
     }
 
+    &:hover {
+      border-color: var(--foreground-l4);
+    }
+
     &:focus-visible {
-      outline: 2px solid var(--ring);
+      outline: 2px solid transparent;
       outline-offset: -1px;
+      border-color: var(--foreground-l0);
+      border-radius: var(--radius-md);
+      box-shadow: 0 0 0 1px var(--foreground-l0);
     }
   }
 
@@ -180,10 +188,11 @@
     max-block-size: min(18rem, var(--available-height, 18rem));
     overflow-y: auto;
     overscroll-behavior: none;
-    padding: 0.25rem;
-    background: var(--background-l1);
-    border: 2px solid var(--border);
-    border-radius: var(--radius-md);
+    padding: 0.375rem;
+    background: var(--background-raised);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 8px 24px rgb(22 20 15 / 0.08);
 
     &:focus-visible {
       outline: none;
@@ -200,7 +209,7 @@
     border-radius: var(--radius-sm);
 
     &[data-highlighted] {
-      background: var(--background-l3);
+      background: var(--background-l2);
     }
 
     &[data-disabled] {

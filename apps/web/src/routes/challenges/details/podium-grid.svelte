@@ -64,42 +64,36 @@
   podium-slot {
     --slot-fg-l0: var(--foreground-nth-l0);
     --slot-fg-l1: var(--foreground-nth-l1);
-    --slot-bg: var(--background-nth);
-    --avatar-size: 2.75rem;
-    --avatar-radius: var(--radius-md);
+    --avatar-size: 2rem;
+    --avatar-radius: var(--radius-full);
 
     display: flex;
     gap: 0.5rem;
     align-items: center;
     justify-content: space-between;
-    block-size: 3.5rem;
-    padding: 0.25rem;
-    background: var(--slot-bg);
-    border: 2px solid transparent;
+    block-size: 3.25rem;
+    padding: 0.5rem 0.625rem;
+    border: 1px solid var(--border);
     border-radius: var(--radius-lg);
 
     &[data-variant='gold'] {
       --slot-fg-l0: var(--foreground-gold-l0);
       --slot-fg-l1: var(--foreground-gold-l1);
-      --slot-bg: color-mix(in oklab, var(--background-gold) 60%, transparent);
     }
 
     &[data-variant='silver'] {
       --slot-fg-l0: var(--foreground-silver-l0);
       --slot-fg-l1: var(--foreground-silver-l1);
-      --slot-bg: color-mix(in oklab, var(--background-silver) 60%, transparent);
     }
 
     &[data-variant='bronze'] {
       --slot-fg-l0: var(--foreground-bronze-l0);
       --slot-fg-l1: var(--foreground-bronze-l1);
-      --slot-bg: color-mix(in oklab, var(--background-bronze) 60%, transparent);
     }
 
     &[data-variant='self'] {
       --slot-fg-l0: var(--foreground-self-l0);
       --slot-fg-l1: var(--foreground-self-l1);
-      --slot-bg: var(--background-self-l1);
     }
 
     &[data-kind='empty'],
@@ -140,8 +134,9 @@
 
   slot-ordinal {
     flex-shrink: 0;
-    padding-inline-start: 0.25rem;
-    font-size: 1rem;
+    font-family: var(--font-display);
+    font-size: 1.0625rem;
+    font-style: italic;
     color: var(--slot-fg-l0);
     white-space: nowrap;
   }
@@ -163,7 +158,8 @@
   slot-name {
     max-inline-size: 100%;
     overflow: hidden;
-    font-size: 1rem;
+    font-size: 0.875rem;
+    font-weight: 400;
     color: var(--slot-fg-l0);
     text-align: end;
     text-overflow: ellipsis;
@@ -173,7 +169,7 @@
   slot-detail {
     max-inline-size: 100%;
     overflow: hidden;
-    font-size: 0.875rem;
+    font-size: 0.75rem;
     color: var(--slot-fg-l1);
     text-align: end;
     text-overflow: ellipsis;

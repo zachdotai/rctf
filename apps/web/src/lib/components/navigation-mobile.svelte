@@ -211,15 +211,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0.75rem 1rem;
-    font-size: 1.5rem;
-    color: var(--foreground-l2);
-    background: var(--background-l2);
-    border-radius: var(--radius-lg);
+    padding: 0.5rem;
+    font-size: 1.375rem;
+    color: var(--foreground-l1);
+    border-radius: var(--radius-full);
     cursor: pointer;
 
     &:hover {
-      background: var(--background-l3);
+      background: var(--background-l2);
     }
 
     &:focus-visible {
@@ -249,10 +248,12 @@
       display: flex;
       align-items: center;
       gap: var(--space-2xs);
-      padding: var(--space-2xs) var(--space-xs);
-      color: var(--foreground-l1);
+      padding: var(--space-xs) var(--space-2xs);
+      font-family: var(--font-display);
+      font-size: var(--step-2);
+      color: var(--foreground-l0);
       text-decoration: none;
-      border-radius: var(--radius-lg);
+      border-block-end: 1px solid var(--border);
 
       &:hover {
         background: var(--background-l2);
@@ -268,8 +269,7 @@
       }
 
       :global(svg) {
-        flex-shrink: 0;
-        font-size: 1.25rem;
+        display: none;
       }
     }
   }

@@ -173,7 +173,7 @@
     align-items: center;
     justify-content: space-between;
     padding: var(--space-2xs) var(--space-s);
-    border-block-end: 2px solid var(--border);
+    border-block-end: 1px solid var(--border);
 
     h2 {
       font-size: var(--step-1);
@@ -219,7 +219,7 @@
     flex-direction: column;
     inline-size: 100%;
     max-block-size: 50svh;
-    border-block-end: 2px solid var(--border);
+    border-block-end: 1px solid var(--border);
   }
 
   sidebar-scroll {
@@ -235,7 +235,7 @@
     display: block;
     flex-shrink: 0;
     padding: var(--space-2xs) var(--space-s);
-    border-block-start: 2px solid var(--border);
+    border-block-start: 1px solid var(--border);
 
     :global(button) {
       inline-size: 100%;
@@ -286,7 +286,7 @@
       inline-size: 21.5rem;
       max-block-size: none;
       border-block-end: 0;
-      border-inline-end: 2px solid var(--border);
+      border-inline-end: 1px solid var(--border);
     }
 
     checker-board {

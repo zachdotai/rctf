@@ -90,10 +90,11 @@
     max-block-size: min(18rem, var(--available-height, 18rem));
     overflow-y: auto;
     overscroll-behavior: none;
-    padding: 0.25rem;
-    background: var(--background-l1);
-    border: 2px solid var(--border);
-    border-radius: var(--radius-md);
+    padding: 0.375rem;
+    background: var(--background-raised);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 8px 24px rgb(22 20 15 / 0.08);
 
     &[data-same-width] {
       min-inline-size: 0;
@@ -108,14 +109,16 @@
     display: flex;
     align-items: center;
     gap: var(--space-2xs);
-    padding: 0.375rem 0.5rem;
-    color: var(--foreground-l1);
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    letter-spacing: 0.02em;
+    color: var(--foreground-l0);
     text-decoration: none;
     cursor: pointer;
-    border-radius: var(--radius-sm);
+    border-radius: var(--radius-md);
 
     &[data-highlighted] {
-      background: var(--background-l3);
+      background: var(--background-l2);
     }
 
     :global(svg) {

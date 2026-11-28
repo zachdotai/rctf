@@ -1,16 +1,16 @@
 <script lang="ts">
   import { page } from '$app/state'
-  import type { Component } from 'svelte'
+  import { IconCaretDown } from '$lib/icons'
 
   type Props = {
     href?: string
     activePath?: string
     label: string
-    icon: Component
+    caret?: boolean
     [key: string]: unknown
   }
 
-  let { href, activePath, label, icon: Icon, ...rest }: Props = $props()
+  let { href, activePath, label, caret = false, ...rest }: Props = $props()
 
   const active = $derived.by(() => {
     if (!activePath) return false
@@ -22,52 +22,53 @@
 {#if href}
   <a
     {href}
-    aria-label={label}
     aria-current={active ? 'page' : undefined}
     data-active={active ? '' : undefined}
     {...rest}
   >
-    <Icon />
+    {label}
   </a>
 {:else}
-  <button
-    type="button"
-    aria-label={label}
-    data-active={active ? '' : undefined}
-    {...rest}
-  >
-    <Icon />
+  <button type="button" data-active={active ? '' : undefined} {...rest}>
+    {label}
+    {#if caret}
+      <IconCaretDown data-slot="caret" />
+    {/if}
   </button>
 {/if}
 
 <style>
   a,
   button {
-    display: flex;
+    --underline: transparent;
+
+    display: inline-flex;
     align-items: center;
-    justify-content: center;
-    padding: 0.75rem 1rem;
-    font-size: 1.5rem;
-    color: var(--foreground-l2);
-    background: var(--background-l2);
-    border-radius: var(--radius-lg);
+    gap: 0.25rem;
+    padding: 0.5rem 0.25rem;
+    font-size: 0.875rem;
+    font-weight: 400;
+    letter-spacing: 0.025em;
+    color: var(--foreground-l0);
+    white-space: nowrap;
+    text-underline-offset: 0.45em;
     cursor: pointer;
+    transition: opacity 120ms ease;
 
     &:hover {
-      background: var(--background-l3);
+      opacity: 0.6;
     }
 
     &[data-active] {
-      color: var(--foreground-accent);
-      background: var(--background-accent);
+      --underline: currentColor;
 
-      &:hover {
-        background: var(--background-accent-hover);
-      }
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-decoration-color: currentColor;
     }
 
-    :global(svg) {
-      flex-shrink: 0;
+    :global([data-slot='caret']) {
+      font-size: 0.625rem;
     }
   }
 </style>

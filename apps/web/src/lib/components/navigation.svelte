@@ -1,7 +1,6 @@
 <script lang="ts">
   import { Permissions } from '@rctf/types'
   import { useQueryClient } from '@tanstack/svelte-query'
-  import { mergeProps } from '@zag-js/svelte'
   import wordmarkDark from '$lib/assets/wordmark-dark.svg'
   import wordmarkLight from '$lib/assets/wordmark-light.svg'
   import NavigationButton from '$lib/components/navigation-button.svelte'
@@ -11,11 +10,7 @@
   import {
     IconCopy,
     IconFlagBannerFold,
-    IconGavel,
     IconGear,
-    IconGlobeHemisphereWest,
-    IconHouse,
-    IconSignIn,
     IconSignOut,
     IconTableFilled,
     IconUserGear,
@@ -23,8 +18,8 @@
   import { useClientConfig } from '$lib/query/config'
   import { useCurrentUser } from '$lib/query/user'
   import Avatar from '$lib/ui/avatar.svelte'
+  import Button from '$lib/ui/button.svelte'
   import Menu from '$lib/ui/menu.svelte'
-  import Tooltip from '$lib/ui/tooltip.svelte'
   import { copyLoginUrl, logout } from '$lib/utils/auth'
   import { countryCodeToFlagFilename } from '$lib/utils/flags'
   import {
@@ -119,8 +114,21 @@
 </script>
 
 <header>
-  <nav-start>
-    <a href="/" aria-label="Home">
+  <header-start>
+    <NavigationCountdown />
+  </header-start>
+
+  <nav aria-label="Main" {@attach rovingFocus}>
+    <nav-group data-side="start">
+      <NavigationButton
+        data-roving
+        href="/challenges"
+        activePath="/challenges"
+        label="Challenges"
+      />
+    </nav-group>
+
+    <a href="/" aria-label="Home" data-slot="logo">
       <logo-light data-theme-visible="light"
         ><img src={lightLogo} alt={clientConfig?.ctfName} /></logo-light
       >
@@ -128,65 +136,31 @@
         ><img src={darkLogo} alt={clientConfig?.ctfName} /></logo-dark
       >
     </a>
-    <nav aria-label="Main" {@attach rovingFocus}>
-      <Tooltip label="Home">
-        {#snippet children({ props })}
-          <NavigationButton
-            {...props}
-            data-roving
-            href="/"
-            activePath="/"
-            label="Home"
-            icon={IconHouse}
-          />
-        {/snippet}
-      </Tooltip>
-      <Tooltip label="Challenges">
-        {#snippet children({ props })}
-          <NavigationButton
-            {...props}
-            data-roving
-            href="/challenges"
-            activePath="/challenges"
-            label="Challenges"
-            icon={IconFlagBannerFold}
-          />
-        {/snippet}
-      </Tooltip>
-      <Tooltip label="Scoreboard">
-        {#snippet children({ props })}
-          <NavigationButton
-            {...props}
-            data-roving
-            href="/scores"
-            activePath="/scores"
-            label="Scoreboard"
-            icon={IconGlobeHemisphereWest}
-          />
-        {/snippet}
-      </Tooltip>
-      {#if isAdmin}
-        <Tooltip label="Admin">
-          {#snippet children({ props: tooltipProps })}
-            <Menu label="Admin menu" items={adminMenuItems}>
-              {#snippet trigger({ props: menuProps })}
-                <NavigationButton
-                  {...mergeProps(tooltipProps, menuProps)}
-                  data-roving
-                  activePath="/admin"
-                  label="Admin menu"
-                  icon={IconGavel}
-                />
-              {/snippet}
-            </Menu>
-          {/snippet}
-        </Tooltip>
-      {/if}
-    </nav>
-  </nav-start>
 
-  <nav-end>
-    <NavigationCountdown />
+    <nav-group data-side="end">
+      <NavigationButton
+        data-roving
+        href="/scores"
+        activePath="/scores"
+        label="Scoreboard"
+      />
+      {#if isAdmin}
+        <Menu label="Admin menu" items={adminMenuItems}>
+          {#snippet trigger({ props })}
+            <NavigationButton
+              {...props}
+              data-roving
+              activePath="/admin"
+              label="Admin"
+              caret
+            />
+          {/snippet}
+        </Menu>
+      {/if}
+    </nav-group>
+  </nav>
+
+  <header-end>
     {#if user && !isArchived}
       {@const currentUser = user}
       {#await import('$lib/components/navigation-team-stats.svelte') then { default: NavigationTeamStats }}
@@ -194,7 +168,7 @@
       {/await}
       <Menu label="Account" items={userMenuItems} placement="bottom-end">
         {#snippet trigger({ props })}
-          <button {...props}>
+          <button {...props} data-slot="account">
             <user-details>
               <user-name>{currentUser.name}</user-name>
               <user-meta>
@@ -221,21 +195,14 @@
         {/snippet}
       </Menu>
     {:else if !isArchived}
-      <Tooltip label="Login">
-        {#snippet children({ props })}
-          <NavigationButton
-            {...props}
-            href="/login"
-            label="Login"
-            icon={IconSignIn}
-          />
-        {/snippet}
-      </Tooltip>
+      <a href="/login" data-slot="login">Log in</a>
+      {#if clientConfig?.registrationsEnabled !== false}
+        <Button href="/register">Register</Button>
+      {/if}
     {/if}
     <ThemeToggle />
-  </nav-end>
-
-  <NavigationMobile />
+    <NavigationMobile />
+  </header-end>
 </header>
 
 <style>
@@ -244,66 +211,123 @@
     inset-block-start: 0;
     inset-inline: 0;
     z-index: var(--layer-nav);
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
-    justify-content: space-between;
+    gap: var(--space-s);
     block-size: var(--header-height);
-    padding: 0.75rem 1rem;
+    padding-inline: 1rem;
     background: var(--background-l0);
 
     @media (width >= 48rem) {
-      padding-inline: 2.25rem;
+      padding-inline: 1.25rem;
     }
   }
 
-  nav-start {
+  header-start {
     display: flex;
     align-items: center;
-    gap: var(--space-s);
-
-    > a img {
-      display: block;
-      block-size: 2rem;
-    }
   }
 
-  nav,
-  nav-end {
+  nav {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: var(--space-l);
+  }
+
+  nav-group {
     display: none;
     align-items: center;
-    gap: var(--space-2xs);
+    gap: var(--space-l);
+
+    &[data-side='start'] {
+      justify-content: flex-end;
+    }
 
     @media (width >= 48rem) {
       display: flex;
     }
   }
 
-  [data-scope='menu'][data-part='trigger'] {
-    --avatar-size: 3rem;
+  [data-slot='logo'] {
+    grid-column: 2;
+    display: block;
+
+    img {
+      display: block;
+      block-size: 2.5rem;
+      inline-size: auto;
+      max-inline-size: 12rem;
+    }
+  }
+
+  header-end {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--space-xs);
+
+    > :global(:not(mobile-nav)) {
+      @media (width < 48rem) {
+        display: none;
+      }
+    }
+  }
+
+  [data-slot='login'] {
+    --underline: transparent;
+
+    font-size: 0.875rem;
+    letter-spacing: 0.025em;
+    color: var(--foreground-l0);
+    white-space: nowrap;
+    transition: opacity 120ms ease;
+
+    &:hover {
+      opacity: 0.6;
+    }
+  }
+
+  [data-slot='account'] {
+    --avatar-size: 2.25rem;
 
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    padding-inline-start: 0.5rem;
+    gap: 0.625rem;
+    padding: 0.25rem;
     cursor: pointer;
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-full);
+
+    @media (width >= 72rem) {
+      padding-inline-start: 0.75rem;
+    }
 
     &:hover {
       background: var(--background-l2);
     }
+
+    @media (width < 48rem) {
+      display: none;
+    }
   }
 
   user-details {
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: end;
+
+    @media (width >= 72rem) {
+      display: flex;
+    }
   }
 
   user-name {
     display: block;
-    max-inline-size: 16rem;
+    max-inline-size: 9rem;
     overflow: hidden;
-    font-size: 1.125rem;
+    font-size: 0.875rem;
+    font-weight: 400;
     line-height: 1.25;
     color: var(--foreground-l0);
     text-overflow: ellipsis;
@@ -316,7 +340,7 @@
     gap: var(--space-3xs);
 
     img {
-      block-size: 1.25rem;
+      block-size: 0.875rem;
       inline-size: auto;
       flex-shrink: 0;
     }
@@ -324,16 +348,16 @@
 
   meta-separator {
     display: block;
-    font-size: 1.25rem;
+    font-size: 0.875rem;
     line-height: 1;
-    color: var(--foreground-l3);
+    color: var(--foreground-l4);
   }
 
   user-status {
     display: block;
     max-inline-size: 8rem;
     overflow: hidden;
-    font-size: 1rem;
+    font-size: 0.75rem;
     color: var(--foreground-l3);
     text-overflow: ellipsis;
     white-space: nowrap;

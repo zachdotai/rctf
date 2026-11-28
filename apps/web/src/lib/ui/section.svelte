@@ -20,9 +20,6 @@
 <style>
   ui-section {
     display: block;
-    overflow: clip;
-    border: 2px solid var(--border);
-    border-radius: var(--radius-lg);
   }
 
   section-header {
@@ -30,14 +27,16 @@
     gap: var(--space-2xs);
     align-items: center;
     justify-content: space-between;
-    padding: 0.375rem 1rem;
+    padding-block-end: 0.75rem;
+    font-size: var(--eyebrow-size);
+    font-weight: var(--eyebrow-weight);
+    letter-spacing: var(--eyebrow-tracking);
+    text-transform: uppercase;
     color: var(--foreground-l3);
-    background: var(--background-l3);
   }
 
   section-content {
     display: block;
-    padding: 0.5rem 1rem;
 
     &[data-flush] {
       padding: 0;

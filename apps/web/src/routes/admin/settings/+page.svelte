@@ -598,7 +598,7 @@
     display: block;
     overflow: clip;
     background: var(--background-l1);
-    border: 2px solid var(--border);
+    border: 1px solid var(--border);
     border-radius: var(--radius-lg);
   }
 
@@ -672,12 +672,12 @@
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
-    border-block-end: 2px solid var(--border);
+    border-block-end: 1px solid var(--border);
 
     @media (min-width: 40rem) {
       inline-size: 11rem;
       border-block-end: none;
-      border-inline-end: 2px solid var(--border);
+      border-inline-end: 1px solid var(--border);
     }
   }
 
@@ -701,7 +701,7 @@
     display: flex;
     flex-shrink: 0;
     padding: var(--space-2xs);
-    border-block-start: 2px solid var(--border);
+    border-block-start: 1px solid var(--border);
 
     :global(button) {
       inline-size: 100%;
